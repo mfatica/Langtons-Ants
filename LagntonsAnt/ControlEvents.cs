@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Drawing;
-using inter.c173;
 
-namespace LagntonsAnt
+namespace LangtonsAnts
 {
-    public partial class Form1
+    public partial class LangtonsAntForm
     {
         private void btn_stop_Click(object sender, System.EventArgs e)
         {
@@ -28,14 +27,6 @@ namespace LagntonsAnt
             pb_gridDisplay.Image = grid.ToBitmap(gr);
         }
 
-        private void txt_cellSize_Leave(object sender, EventArgs e)
-        {
-            running = false;
-            gr.CellSize = tb_cellSize.Value;
-            running = true;
-            Run();
-        }
-
         private void btn_restart_Click(object sender, System.EventArgs e)
         {
             Setup();
@@ -53,6 +44,8 @@ namespace LagntonsAnt
             {
                 string path = SaveDialog.FileName;
                 pb_gridDisplay.Image.Save(path);
+                link_open_save.Visible = true;
+                link_open_save.Links.Add(0, link_open_save.Text.Length, path);
             }
         }
 

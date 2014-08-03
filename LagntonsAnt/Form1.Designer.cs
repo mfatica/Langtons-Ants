@@ -1,6 +1,6 @@
-﻿namespace LagntonsAnt
+﻿namespace LangtonsAnts
 {
-    partial class Form1
+    partial class LangtonsAntForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,15 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
             "White",
             "R"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
             "DarkGray",
             "L"}, -1);
             this.pb_gridDisplay = new System.Windows.Forms.PictureBox();
             this.btn_run = new System.Windows.Forms.Button();
             this.pnl_controlPanel = new System.Windows.Forms.Panel();
+            this.link_open_gif = new System.Windows.Forms.LinkLabel();
+            this.cb_gif_loop = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txt_gif_delay = new System.Windows.Forms.MaskedTextBox();
+            this.btn_gif_create = new System.Windows.Forms.Button();
+            this.txt_gif_StepsPerFrame = new System.Windows.Forms.MaskedTextBox();
+            this.txt_gif_Steps = new System.Windows.Forms.MaskedTextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btn_runToStep = new System.Windows.Forms.Button();
+            this.txt_stepsToRun = new System.Windows.Forms.MaskedTextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.lbl_speed = new System.Windows.Forms.Label();
             this.btn_swap = new System.Windows.Forms.Button();
             this.btn_saveImage = new System.Windows.Forms.Button();
@@ -60,6 +73,7 @@
             this.tb_cellSize = new System.Windows.Forms.TrackBar();
             this.ColorDialog = new System.Windows.Forms.ColorDialog();
             this.SaveDialog = new System.Windows.Forms.SaveFileDialog();
+            this.link_open_save = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pb_gridDisplay)).BeginInit();
             this.pnl_controlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_antColor)).BeginInit();
@@ -76,6 +90,8 @@
             this.pb_gridDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pb_gridDisplay.TabIndex = 0;
             this.pb_gridDisplay.TabStop = false;
+            this.pb_gridDisplay.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pb_gridDisplay_MouseDown);
+            this.pb_gridDisplay.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pb_gridDisplay_MouseUp);
             // 
             // btn_run
             // 
@@ -90,6 +106,20 @@
             // pnl_controlPanel
             // 
             this.pnl_controlPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.pnl_controlPanel.Controls.Add(this.link_open_save);
+            this.pnl_controlPanel.Controls.Add(this.link_open_gif);
+            this.pnl_controlPanel.Controls.Add(this.cb_gif_loop);
+            this.pnl_controlPanel.Controls.Add(this.label7);
+            this.pnl_controlPanel.Controls.Add(this.txt_gif_delay);
+            this.pnl_controlPanel.Controls.Add(this.btn_gif_create);
+            this.pnl_controlPanel.Controls.Add(this.txt_gif_StepsPerFrame);
+            this.pnl_controlPanel.Controls.Add(this.txt_gif_Steps);
+            this.pnl_controlPanel.Controls.Add(this.label6);
+            this.pnl_controlPanel.Controls.Add(this.label5);
+            this.pnl_controlPanel.Controls.Add(this.label3);
+            this.pnl_controlPanel.Controls.Add(this.btn_runToStep);
+            this.pnl_controlPanel.Controls.Add(this.txt_stepsToRun);
+            this.pnl_controlPanel.Controls.Add(this.label1);
             this.pnl_controlPanel.Controls.Add(this.lbl_speed);
             this.pnl_controlPanel.Controls.Add(this.btn_swap);
             this.pnl_controlPanel.Controls.Add(this.btn_saveImage);
@@ -115,6 +145,136 @@
             this.pnl_controlPanel.Name = "pnl_controlPanel";
             this.pnl_controlPanel.Size = new System.Drawing.Size(200, 600);
             this.pnl_controlPanel.TabIndex = 2;
+            // 
+            // link_open_gif
+            // 
+            this.link_open_gif.AutoSize = true;
+            this.link_open_gif.Location = new System.Drawing.Point(73, 579);
+            this.link_open_gif.Name = "link_open_gif";
+            this.link_open_gif.Size = new System.Drawing.Size(33, 13);
+            this.link_open_gif.TabIndex = 40;
+            this.link_open_gif.TabStop = true;
+            this.link_open_gif.Text = "Open";
+            this.link_open_gif.Visible = false;
+            this.link_open_gif.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpenLink);
+            // 
+            // cb_gif_loop
+            // 
+            this.cb_gif_loop.AutoSize = true;
+            this.cb_gif_loop.Checked = true;
+            this.cb_gif_loop.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_gif_loop.Location = new System.Drawing.Point(65, 552);
+            this.cb_gif_loop.Name = "cb_gif_loop";
+            this.cb_gif_loop.Size = new System.Drawing.Size(50, 17);
+            this.cb_gif_loop.TabIndex = 39;
+            this.cb_gif_loop.Text = "Loop";
+            this.cb_gif_loop.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(62, 529);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(37, 13);
+            this.label7.TabIndex = 38;
+            this.label7.Text = "Delay:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // txt_gif_delay
+            // 
+            this.txt_gif_delay.Location = new System.Drawing.Point(105, 526);
+            this.txt_gif_delay.Mask = "###";
+            this.txt_gif_delay.Name = "txt_gif_delay";
+            this.txt_gif_delay.PromptChar = ' ';
+            this.txt_gif_delay.Size = new System.Drawing.Size(43, 20);
+            this.txt_gif_delay.TabIndex = 37;
+            this.txt_gif_delay.Text = "2";
+            // 
+            // btn_gif_create
+            // 
+            this.btn_gif_create.Location = new System.Drawing.Point(112, 574);
+            this.btn_gif_create.Name = "btn_gif_create";
+            this.btn_gif_create.Size = new System.Drawing.Size(80, 23);
+            this.btn_gif_create.TabIndex = 36;
+            this.btn_gif_create.Text = "Create";
+            this.btn_gif_create.UseVisualStyleBackColor = true;
+            this.btn_gif_create.Click += new System.EventHandler(this.btn_gif_create_Click);
+            // 
+            // txt_gif_StepsPerFrame
+            // 
+            this.txt_gif_StepsPerFrame.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_gif_StepsPerFrame.Location = new System.Drawing.Point(105, 502);
+            this.txt_gif_StepsPerFrame.Mask = "###################";
+            this.txt_gif_StepsPerFrame.Name = "txt_gif_StepsPerFrame";
+            this.txt_gif_StepsPerFrame.PromptChar = ' ';
+            this.txt_gif_StepsPerFrame.Size = new System.Drawing.Size(87, 20);
+            this.txt_gif_StepsPerFrame.TabIndex = 35;
+            // 
+            // txt_gif_Steps
+            // 
+            this.txt_gif_Steps.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_gif_Steps.Location = new System.Drawing.Point(105, 476);
+            this.txt_gif_Steps.Mask = "###################";
+            this.txt_gif_Steps.Name = "txt_gif_Steps";
+            this.txt_gif_Steps.PromptChar = ' ';
+            this.txt_gif_Steps.Size = new System.Drawing.Size(87, 20);
+            this.txt_gif_Steps.TabIndex = 34;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 505);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(88, 13);
+            this.label6.TabIndex = 33;
+            this.label6.Text = "Steps Per Frame:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(32, 479);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(67, 13);
+            this.label5.TabIndex = 32;
+            this.label5.Text = " Total Steps:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 453);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(61, 13);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "Create GIF:";
+            // 
+            // btn_runToStep
+            // 
+            this.btn_runToStep.Location = new System.Drawing.Point(154, 413);
+            this.btn_runToStep.Name = "btn_runToStep";
+            this.btn_runToStep.Size = new System.Drawing.Size(31, 23);
+            this.btn_runToStep.TabIndex = 30;
+            this.btn_runToStep.Text = "Go";
+            this.btn_runToStep.UseVisualStyleBackColor = true;
+            this.btn_runToStep.Click += new System.EventHandler(this.btn_runToStep_Click);
+            // 
+            // txt_stepsToRun
+            // 
+            this.txt_stepsToRun.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txt_stepsToRun.Location = new System.Drawing.Point(17, 413);
+            this.txt_stepsToRun.Mask = "###################";
+            this.txt_stepsToRun.Name = "txt_stepsToRun";
+            this.txt_stepsToRun.PromptChar = ' ';
+            this.txt_stepsToRun.Size = new System.Drawing.Size(131, 20);
+            this.txt_stepsToRun.TabIndex = 29;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 397);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Run To Step:";
             // 
             // lbl_speed
             // 
@@ -202,8 +362,8 @@
             this.columnHeader2});
             this.list_ColorTurn.FullRowSelect = true;
             this.list_ColorTurn.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
+            listViewItem3,
+            listViewItem4});
             this.list_ColorTurn.Location = new System.Drawing.Point(22, 195);
             this.list_ColorTurn.Name = "list_ColorTurn";
             this.list_ColorTurn.Size = new System.Drawing.Size(147, 160);
@@ -239,7 +399,6 @@
             this.txt_antY.Size = new System.Drawing.Size(29, 20);
             this.txt_antY.TabIndex = 14;
             this.txt_antY.Text = "3";
-            this.txt_antY.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txt_antX
             // 
@@ -250,7 +409,6 @@
             this.txt_antX.Size = new System.Drawing.Size(29, 20);
             this.txt_antX.TabIndex = 13;
             this.txt_antX.Text = "2";
-            this.txt_antX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btn_addAnt
             // 
@@ -340,7 +498,7 @@
             this.tb_cellSize.LargeChange = 9;
             this.tb_cellSize.Location = new System.Drawing.Point(1, 79);
             this.tb_cellSize.Maximum = 50;
-            this.tb_cellSize.Minimum = 1;
+            this.tb_cellSize.Minimum = 3;
             this.tb_cellSize.Name = "tb_cellSize";
             this.tb_cellSize.Size = new System.Drawing.Size(199, 45);
             this.tb_cellSize.SmallChange = 3;
@@ -354,7 +512,19 @@
             this.SaveDialog.DefaultExt = "bmp";
             this.SaveDialog.Filter = "256 Color Bitmap|*.bmp;*.dib";
             // 
-            // Form1
+            // link_open_save
+            // 
+            this.link_open_save.AutoSize = true;
+            this.link_open_save.Location = new System.Drawing.Point(159, 392);
+            this.link_open_save.Name = "link_open_save";
+            this.link_open_save.Size = new System.Drawing.Size(33, 13);
+            this.link_open_save.TabIndex = 41;
+            this.link_open_save.TabStop = true;
+            this.link_open_save.Text = "Open";
+            this.link_open_save.Visible = false;
+            this.link_open_save.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpenLink);
+            // 
+            // LangtonsAntForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -362,7 +532,7 @@
             this.Controls.Add(this.pnl_controlPanel);
             this.Controls.Add(this.pb_gridDisplay);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Name = "Form1";
+            this.Name = "LangtonsAntForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Langton\'s Ant";
             ((System.ComponentModel.ISupportInitialize)(this.pb_gridDisplay)).EndInit();
@@ -404,6 +574,20 @@
         private System.Windows.Forms.Label lbl_speed;
         private System.Windows.Forms.TrackBar tb_Speed;
         private System.Windows.Forms.TrackBar tb_cellSize;
+        private System.Windows.Forms.Button btn_runToStep;
+        private System.Windows.Forms.MaskedTextBox txt_stepsToRun;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btn_gif_create;
+        private System.Windows.Forms.MaskedTextBox txt_gif_StepsPerFrame;
+        private System.Windows.Forms.MaskedTextBox txt_gif_Steps;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.MaskedTextBox txt_gif_delay;
+        private System.Windows.Forms.CheckBox cb_gif_loop;
+        private System.Windows.Forms.LinkLabel link_open_gif;
+        private System.Windows.Forms.LinkLabel link_open_save;
     }
 }
 

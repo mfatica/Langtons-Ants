@@ -2,12 +2,26 @@
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace inter.c173
+namespace LangtonsAnts
 {
     class AntGrid
     {
         int[,] grid;
         GridState gridState;
+
+        internal AntGrid Copy()
+        {
+            AntGrid copy = new AntGrid();
+
+            copy.grid = new int[this.gridState.width, this.gridState.height];
+            for (int i = 0; i < this.grid.GetLength(0); i++)
+                for (int j = 0; j < this.grid.GetLength(1); j++)
+                    copy.grid[i, j] = this.grid[i, j];
+
+            copy.gridState = this.gridState;
+
+            return copy;
+        }
 
         public AntGrid() : this(new GridState()) { }
 
@@ -23,8 +37,18 @@ namespace inter.c173
 
         public void AddAnt(int x, int y)
         {
-            if(x < gridState.width && y < gridState.height)
-                gridState.ants.Add(new Ant(new Point(x, y), 3));
+            AddAnt(x, y, 3);
+        }
+
+        public void AddAnt(System.Drawing.Point pos)
+        {
+            AddAnt(pos.X, pos.Y, 3);
+        }
+
+        public void AddAnt(int x, int y, int dir)
+        {
+            if (x > 0 && y > 0 && x < gridState.width && y < gridState.height)
+                gridState.ants.Add(new Ant(new Point(x, y), dir));
         }
 
         public void Step()
@@ -32,7 +56,7 @@ namespace inter.c173
             foreach (Ant a in gridState.ants)
             {
                 Point from = a.Position;
-                int state = grid[from.x, from.y];
+                int state = grid[from.X, from.Y];
 
                 if (gridState.turns[state] == 'R')
                     a.Direction++;
@@ -41,15 +65,15 @@ namespace inter.c173
 
                 int nextState = ++state > gridState.turns.Count - 1 ? 0 : state;
 
-                grid[from.x, from.y] = nextState;
+                grid[from.X, from.Y] = nextState;
 
-                Point to = a.Position + Ant.directions[a.Direction];
+                Point to = a.Position.Add(Ant.directions[a.Direction]);
 
-                if (to.y < 0) to.y = gridState.height - 1;
-                if (to.y > gridState.height - 1) to.y = 0;
+                if (to.Y < 0) to.Y = gridState.height - 1;
+                if (to.Y > gridState.height - 1) to.Y = 0;
 
-                if (to.x < 0) to.x = gridState.width - 1;
-                if (to.x > gridState.width - 1) to.x = 0;
+                if (to.X < 0) to.X = gridState.width - 1;
+                if (to.X > gridState.width - 1) to.X = 0;
 
                 a.Position = to;
             }
@@ -61,25 +85,16 @@ namespace inter.c173
         }
     }
 
-    struct Point
+    public static class PointExtensions
     {
-        public int x;
-        public int y;
-
-        public Point(int x, int y)
+        public static string ToString(this Point p)
         {
-            this.x = x;
-            this.y = y;
+            return String.Format("{0},{1}", p.X, p.Y);
         }
 
-        public static Point operator +(Point p1, Point p2)
+        public static Point Add(this Point p1, Point p2)
         {
-            return new Point(p1.x + p2.x, p1.y + p2.y);
-        }
-
-        public override string ToString()
-        {
-            return String.Format("{0},{1}",x,y);
+            return new Point(p1.X + p2.X, p1.Y + p2.Y);
         }
     }
 

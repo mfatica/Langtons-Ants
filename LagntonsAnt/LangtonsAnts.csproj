@@ -7,8 +7,8 @@
     <ProjectGuid>{9FE1A646-0CB8-4913-AB4A-26763A242C92}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LagntonsAnt</RootNamespace>
-    <AssemblyName>LagntonsAnt</AssemblyName>
+    <RootNamespace>LangtonsAnts</RootNamespace>
+    <AssemblyName>ants</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,8 +32,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Magick.NET-AnyCPU">
+      <HintPath>..\packages\Magick.NET-Q8-AnyCPU.6.8.9.601\lib\net40-client\Magick.NET-AnyCPU.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,9 +47,11 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AntGrid.cs" />
+    <Compile Include="ConsoleGenerator.cs" />
     <Compile Include="ControlEvents.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,7 +76,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

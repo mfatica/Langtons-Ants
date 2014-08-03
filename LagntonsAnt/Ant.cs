@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Drawing;
 
-namespace inter.c173
+namespace LangtonsAnts
 {
     class Ant
     {
