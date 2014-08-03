@@ -52,7 +52,10 @@
   <ItemGroup>
     <Compile Include="AntGrid.cs" />
     <Compile Include="ConsoleGenerator.cs" />
-    <Compile Include="ControlEvents.cs">
+    <Compile Include="Event Handlers\ChangedEvents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Event Handlers\ClickEvents.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.cs">
